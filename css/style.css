@@ -1,0 +1,87 @@
+@import url('https://fonts.cdnfonts.com/css/impact');
+
+.colortoggle {
+    --black-color: rgb(0, 0, 0);
+    --white-color: rgb(217, 213, 213);
+    --yellow-color: yellow;
+    --semi-blach: rgb(32, 30, 30);
+    --blue-vilo: blueviolet;
+    transition: 0.8s all;
+    -webkit-transition: 0.8s all;
+    -moz-transition: 0.8s all;
+    -ms-transition: 0.8s all;
+    -o-transition: 0.8s all;
+}
+
+h1 {
+    font-family: "impact", sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--white-color, black);
+    user-select: none;
+}
+
+h5 {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+    color: var(--white-color, black);
+    user-select: none;
+}
+
+/* ===========================================for Design==================================== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--semi-blach, white);
+    transition: 0.8s all;
+    -webkit-transition: 0.8s all;
+    -moz-transition: 0.8s all;
+    -ms-transition: 0.8s all;
+    -o-transition: 0.8s all;
+}
+
+
+
+.bulb {
+    background-color: var(--black-color, yellow);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    color: var(--white-color, black);
+    box-shadow: 0px 0px 50px 0px var(--white-color, rgb(220, 217, 217));
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    color: var(--white-color, black);
+    background-color: var(--black-color, yellow);
+    border-color: var(--white-color, black);
+    box-shadow: 3px 3px 10px var(--blue-vilo, rgb(165, 162, 162));
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    height: 80px;
+    width: 200px;
+    user-select: none;
+    margin-top: 40px;
+    transition: 0.8s all;
+    -webkit-transition: 0.8s all;
+    -moz-transition: 0.8s all;
+    -ms-transition: 0.8s all;
+    -o-transition: 0.8s all;
+}
+
+button:hover {
+    background-color: #8a2be2;
+    color: antiquewhite;
+}
