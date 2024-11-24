@@ -92,9 +92,11 @@ input::placeholder {
 td {
   vertical-align: middle;
   font-family: var(--font-PT-Sans-Caption);
-  text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
+}
+td p{
+  text-transform: uppercase;
 }
 
 .fade:not(.show){
