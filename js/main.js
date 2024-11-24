@@ -23,29 +23,38 @@ function getValue() {
 
 
     if (BookmarksContainer.name != "" && BookmarksContainer.webUrl != "") {
-        // ==================Test Name is Excit Function================
-        var excite = bookmarksValue.some(function (nameEx) {
-            return nameEx.name.toLowerCase() == BookmarksContainer.name.toLocaleLowerCase();
-        });
-
-        if (!excite) {
-            if (isValidURL(BookmarksContainer.webUrl)) {
-                bookmarksValue.push(BookmarksContainer);
-                localStorage.setItem('bookmarksValue', JSON.stringify(bookmarksValue));
-                displayValue();
-                clearIn();
-            } else {
-                getmessage();
-                modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
+        if(BookmarksContainer.name.length >= 3){
+            // ==================Test Name is Excit Function================
+            var excite = bookmarksValue.some(function (nameEx) {
+                return nameEx.name.toLowerCase() == BookmarksContainer.name.toLocaleLowerCase();
+            });
+    
+            if (!excite) {
+                if (isValidURL(BookmarksContainer.webUrl)) {
+                    bookmarksValue.push(BookmarksContainer);
+                    localStorage.setItem('bookmarksValue', JSON.stringify(bookmarksValue));
+                    displayValue();
+                    clearIn();
+                } else {
+                    getmessage();
+                    modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
+                    inUrl.classList.add('is-invalid');
+                }
             }
-        }
-        else {
+            else {
+                getmessage();
+                modalInner.innerHTML = 'Name Already Excite';
+                inName.classList.add('is-invalid');
+            }
+        }else{
             getmessage();
-            modalInner.innerHTML = 'Name Already Excite';
+            modalInner.innerHTML = 'Name Should not be less Than Three Characters';
         }
     } else {
         getmessage();
         modalInner.innerHTML = 'Please Be Sure To not Leave Any Empty Input';
+        inName.classList.add('is-invalid');
+        inUrl.classList.add('is-invalid');
     }
 
 }
@@ -65,6 +74,10 @@ function isValidURL(urlString) {
 function clearIn() {
     inName.value = "";
     inUrl.value = "";
+    inUrl.classList.remove('is-valid');
+    inUrl.classList.remove('is-imvalid');
+    inName.classList.remove('is-valid');
+    inName.classList.remove('is-invalid');
 }
 
 
@@ -148,15 +161,19 @@ function updateTheReturnValue(idretupdate) {
             } else {
                 getmessage();
                 modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
+                inUrl.classList.add('is-invalid');
             }
         }
         else {
             getmessage();
             modalInner.innerHTML = 'Name Already Excite';
+            inName.classList.add('is-invalid');
         }
     } else {
         getmessage();
         modalInner.innerHTML = 'Please Be Sure To not Leave Any Empty Input';
+        inName.classList.add('is-invalid');
+        inUrl.classList.add('is-invalid');
     }
 
 };
@@ -220,4 +237,26 @@ var closeBtn = document.getElementById('closemessage');
 function closeMessage() {
     modal.style.display = 'none';
 
+};
+function nameInput(){
+    var nameva = inName.value;
+    if(nameva.length >= 3){
+        inName.classList.add('is-valid');
+        inName.classList.remove('is-invalid');
+    }
+    else{
+        inName.classList.remove('is-valid');
+        inName.classList.add('is-invalid');
+    }
+}
+
+function linkInput(){
+    if( isValidURL(inUrl.value)){
+        inUrl.classList.add('is-valid');
+        inUrl.classList.remove('is-invalid');
+    }
+    else{
+        inUrl.classList.remove('is-valid');
+        inUrl.classList.add('is-invalid');
+    }
 }
