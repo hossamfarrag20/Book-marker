@@ -4,6 +4,7 @@ var bton = document.getElementsByClassName('submition');
 var btonupdate = document.getElementById('button-update');
 var displayArea = document.getElementById('display-area');
 var link = document.getElementById('link');
+var modalInner = document.getElementById('inner-message');
 
 
 var bookmarksValue = [];
@@ -34,14 +35,17 @@ function getValue() {
                 displayValue();
                 clearIn();
             } else {
-                alert("The Url Is not Valid");
+                getmessage();
+                modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
             }
         }
         else {
-            alert('Name Already Excite');
+            getmessage();
+            modalInner.innerHTML = 'Name Already Excite';
         }
     } else {
-        alert("Please Be Sure To not Leave Any Empty Input");
+        getmessage();
+        modalInner.innerHTML = 'Please Be Sure To not Leave Any Empty Input';
     }
 
 }
@@ -142,14 +146,17 @@ function updateTheReturnValue(idretupdate) {
                 clearIn()
                 btonupdate.innerHTML = `<button type="submit" onclick="getValue()" class="btn btn-danger px-4 submition">Submit</button>`;
             } else {
-                alert("The Url Is not Valid");
+                getmessage();
+                modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
             }
         }
         else {
-            alert('Name Already Excite');
+            getmessage();
+            modalInner.innerHTML = 'Name Already Excite';
         }
     } else {
-        alert("Please Be Sure To not Leave Any Empty Input");
+        getmessage();
+        modalInner.innerHTML = 'Please Be Sure To not Leave Any Empty Input';
     }
 
 };
@@ -202,4 +209,15 @@ function searchon() {
     }
 
     displayArea.innerHTML = container;
+}
+var modal = document.getElementById('staticBackdrop');
+function getmessage(message) {
+    modal.style.display = 'block';
+
+};
+
+var closeBtn = document.getElementById('closemessage');
+function closeMessage() {
+    modal.style.display = 'none';
+
 }

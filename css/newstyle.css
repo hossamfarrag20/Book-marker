@@ -41,7 +41,6 @@ body {
 
 .tittle {
   border-bottom: 2px black dotted;
-  width: 95%;
   margin: auto;
   padding-bottom: 65px;
 }
@@ -59,7 +58,7 @@ body {
 input::placeholder,
 .table-tittls p {
   font-family: var(--font-PT-Sans-Caption);
-  font-size: 14px;
+  font-size: 11px;
   line-height: 24px;
   font-weight: 600;
 }
@@ -78,6 +77,13 @@ input::placeholder {
 .newbtn {
   font-size: 14px;
 }
+@media screen and (min-width: 512px){
+  .tittle-input,
+  input::placeholder,
+  .table-tittls p {
+    font-size: 14px;
+  }
+}
 @media screen and (min-width: 1200px) {
   .biggest-cont {
     width: 1200px;
@@ -85,4 +91,12 @@ input::placeholder {
 }
 td {
   vertical-align: middle;
+  font-family: var(--font-PT-Sans-Caption);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fade:not(.show){
+  opacity: 1;
 }

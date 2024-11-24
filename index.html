@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Marker</title>
     <meta name="description" content="Book Marker">
-    <meta name="keywords"
-        content="boomarks, bookmaker, bookmarks maker, save websites, websites saver">
+    <meta name="keywords" content="boomarks, bookmaker, bookmarks maker, save websites, websites saver">
     <link rel="shortcut icon" href="./bookmark-solid.svg" type="image/x-icon">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fontaweasom/css/all.min.css">
@@ -21,7 +20,7 @@
                 <h1 class="main-tittle position-relative  m-auto px-1">Bookmarker</h1>
             </div>
         </header>
-        <section id="bookmark" class="container pb-5 tittle">
+        <section id="bookmark" class="container pb-5">
             <div class="bookmark-tittle text-center pt-2 pb-4">
                 <span class="fa fa-bookmark"></span>
                 <span class="bookmark-tittle-des">Bookmark your favorite sites</span>
@@ -33,7 +32,7 @@
                     <span class="tittle-input">Site Name</span>
                 </label>
                 <input type="text" class="form-control input-name" id="exampleFormControlInput1"
-                    placeholder="Bookmarks Name">
+                placeholder="Bookmarks Name">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">
@@ -41,11 +40,12 @@
                     <span class="tittle-input">Site URL</span>
                 </label>
                 <input type="url" class="form-control input-url" id="exampleFormControlInput2"
-                    placeholder="Website Url">
+                placeholder="Website Url">
             </div>
             <div class="button-contact text-center mt-4" id="button-update">
                 <button type="submit" onclick="getValue()" class="btn btn-danger px-5 submition newbtn">Submit</button>
             </div>
+            <div class="tittle"></div>
         </section>
         <section id="data" class="py-5">
             <div class="container">
@@ -55,7 +55,7 @@
                         <span class="tittle-input">Search</span>
                     </label>
                     <input type="text" onkeyup="searchon()" class="form-control input-name"
-                        id="exampleFormControlInput3" placeholder="Search...">
+                    id="exampleFormControlInput3" placeholder="Search...">
                 </div>
             </div>
             <div class="container">
@@ -80,13 +80,29 @@
                         </tr>
                     </thead>
                     <tbody id="display-area">
-
+                        
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade bg-black bg-opacity-75" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-black text-white">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Bookmarker tells you that ...</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="inner-message">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closemessage" onclick="closeMessage()" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/main.js"></script>
 </body>
