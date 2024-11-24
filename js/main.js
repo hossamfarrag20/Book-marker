@@ -18,7 +18,7 @@ if (localStorage.getItem('bookmarksValue') != null) {
 function getValue() {
     var BookmarksContainer = {
         name: inName.value,
-        webUrl: inUrl.value
+        webUrl: preprocessURL(inUrl.value)
     };
 
 
@@ -58,6 +58,14 @@ function getValue() {
     }
 
 }
+// ==================proccesssing the Url if is valid Function================
+function preprocessURL(url) {
+    if (!/^https?:\/\//i.test(url) && /.+\..+/.test(url)) {
+        return `https://${url}`;
+    }
+    return url;
+}
+
 
 // ==================Test Url Function================
 function isValidURL(urlString) {
@@ -142,32 +150,37 @@ function updateButton(idret) {
 function updateTheReturnValue(idretupdate) {
     var BookmarksContainer = {
         name: inName.value,
-        webUrl: inUrl.value
+        webUrl: preprocessURL(inUrl.value)
     }
 
     if (BookmarksContainer.name != "" && BookmarksContainer.webUrl != "") {
-        // ==================Test Name is Excit Function================
-        var excite = bookmarksValue.some(function (nameEx, index) {
-            return index !== idretupdate && nameEx.name.toLowerCase() == BookmarksContainer.name.toLocaleLowerCase();
-        });
-
-        if (!excite) {
-            if (isValidURL(BookmarksContainer.webUrl)) {
-                bookmarksValue.splice(idretupdate, 1, BookmarksContainer);
-                localStorage.setItem('bookmarksValue', JSON.stringify(bookmarksValue));
-                displayValue();
-                clearIn()
-                btonupdate.innerHTML = `<button type="submit" onclick="getValue()" class="btn btn-danger px-4 submition">Submit</button>`;
-            } else {
-                getmessage();
-                modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
-                inUrl.classList.add('is-invalid');
+        if(BookmarksContainer.name.length >= 3){
+            // ==================Test Name is Excit Function================
+            var excite = bookmarksValue.some(function (nameEx, index) {
+                return index !== idretupdate && nameEx.name.toLowerCase() == BookmarksContainer.name.toLocaleLowerCase();
+            });
+    
+            if (!excite) {
+                if (isValidURL(BookmarksContainer.webUrl)) {
+                    bookmarksValue.splice(idretupdate, 1, BookmarksContainer);
+                    localStorage.setItem('bookmarksValue', JSON.stringify(bookmarksValue));
+                    displayValue();
+                    clearIn()
+                    btonupdate.innerHTML = `<button type="submit" onclick="getValue()" class="btn btn-danger px-4 submition">Submit</button>`;
+                } else {
+                    getmessage();
+                    modalInner.innerHTML = 'The Url Is not Valid'+ `<br>` + `You should use a link starts with "https://" or "http://"` ;
+                    inUrl.classList.add('is-invalid');
+                }
             }
-        }
-        else {
+            else {
+                getmessage();
+                modalInner.innerHTML = 'Name Already Excite';
+                inName.classList.add('is-invalid');
+            }
+        }else{
             getmessage();
-            modalInner.innerHTML = 'Name Already Excite';
-            inName.classList.add('is-invalid');
+            modalInner.innerHTML = 'Name Should not be less Than Three Characters';
         }
     } else {
         getmessage();
@@ -230,7 +243,6 @@ function searchon() {
 var modal = document.getElementById('staticBackdrop');
 function getmessage(message) {
     modal.style.display = 'block';
-
 };
 
 var closeBtn = document.getElementById('closemessage');
@@ -251,7 +263,7 @@ function nameInput(){
 }
 
 function linkInput(){
-    if( isValidURL(inUrl.value)){
+    if( isValidURL(preprocessURL(inUrl.value))){
         inUrl.classList.add('is-valid');
         inUrl.classList.remove('is-invalid');
     }
